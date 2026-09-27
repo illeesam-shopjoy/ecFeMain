@@ -10,17 +10,17 @@ const start = '    <!-- MAIN CONTENT -->';
 const mainOpen = '<main style="flex:1;min-width:0;overflow-x:hidden;">';
 const i = html.indexOf(start);
 if (i < 0) {
-  console.error('start not found');
+  console.error('시작 지점을 찾을 수 없음');
   process.exit(1);
 }
 const iMain = html.indexOf(mainOpen, i);
 if (iMain < 0) {
-  console.error('main not found');
+  console.error('main을 찾을 수 없음');
   process.exit(1);
 }
 const j = html.indexOf('    </main>', iMain);
 if (j < 0) {
-  console.error('end main not found');
+  console.error('end main을 찾을 수 없음');
   process.exit(1);
 }
 const replacement = `    <!-- MAIN CONTENT -->
@@ -40,4 +40,4 @@ const replacement = `    <!-- MAIN CONTENT -->
 
 html = html.slice(0, i) + replacement + html.slice(j + '    </main>'.length);
 fs.writeFileSync(indexPath, html);
-console.log('patched main');
+console.log('main 패치 완료');

@@ -28,7 +28,7 @@ fs.mkdirSync(outDir, { recursive: true });
 for (const p of pages) {
   const i = html.indexOf(p.start);
   if (i < 0) {
-    console.error('start not found', p.key);
+    console.error('시작 지점을 찾을 수 없음', p.key);
     process.exit(1);
   }
   let j;
@@ -37,17 +37,17 @@ for (const p of pages) {
   } else {
     const labelPos = html.indexOf(p.nextPageLabel, i + 1);
     if (labelPos < 0) {
-      console.error('label not found', p.key, p.nextPageLabel);
+      console.error('라벨을 찾을 수 없음', p.key, p.nextPageLabel);
       process.exit(1);
     }
     j = html.lastIndexOf('<!--', labelPos);
     if (j < i) {
-      console.error('comment rewind failed', p.key);
+      console.error('주석 되감기 실패', p.key);
       process.exit(1);
     }
   }
   if (j < 0) {
-    console.error('end not found', p.key);
+    console.error('끝 지점을 찾을 수 없음', p.key);
     process.exit(1);
   }
   let chunk = html.slice(i, j);

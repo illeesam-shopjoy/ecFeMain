@@ -89,7 +89,7 @@ for (const app of APPS) {
   const { ids, action } = needsCategorys(data);
 
   if (action === 'skip') {
-    console.log(app, 'no categoryId on products/artworks/works — skipped');
+    console.log(app, 'products/artworks/works에 categoryId 없음 — 건너뜀');
     continue;
   }
 
@@ -100,7 +100,7 @@ for (const app of APPS) {
       categoryName: labelFor(categoryId),
     }));
     fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
-    console.log(app, 'wrote categorys', data.categorys.length, 'entries');
+    console.log(app, 'categorys 작성', data.categorys.length, 'entries');
     continue;
   }
 
@@ -115,9 +115,9 @@ for (const app of APPS) {
     }
     data.categorys = rows;
     fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
-    console.log(app, 'merged categorys, total', rows.length);
+    console.log(app, 'categorys 병합, 총', rows.length);
     continue;
   }
 
-  console.log(app, 'categorys ok');
+  console.log(app, 'categorys 정상');
 }
